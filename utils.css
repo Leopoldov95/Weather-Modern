@@ -1,0 +1,103 @@
+/* UTILITIES */
+.font-light {
+  opacity: 0.4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px 1.6rem;
+  color: white;
+  background: var(--bg-light);
+  width: 120px;
+  border-radius: 15px;
+  margin: 0 4px;
+  height: 9rem;
+}
+.big-card {
+  background: white;
+  width: 220px;
+  border-radius: 15px;
+  height: 12rem;
+  margin: 10px;
+}
+.active {
+  color: black;
+  opacity: 1 !important;
+  border-bottom: 1px solid #333;
+  padding-bottom: 6px;
+}
+
+.unit-temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.selected {
+  color: white;
+  background: black;
+}
+.sun-icon {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: gold;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.vertical-bar {
+  border: 1px solid rgba(51, 51, 51, 0.438);
+  border-radius: 12px;
+  height: 60px;
+  width: 20px;
+  position: relative;
+}
+
+.bar-meter {
+  position: absolute;
+
+  left: 2px;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background-color: slateblue;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  opacity: 0.97;
+  width: 100%;
+}
+
+.dropdown-menu {
+  color: #333;
+  line-height: 2;
+}
+
+.dropdown-menu .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.is-active {
+  display: block;
+}

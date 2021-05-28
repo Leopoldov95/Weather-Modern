@@ -1,0 +1,299 @@
+:root {
+  --bg-light: rgb(182, 182, 255);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  background-color: lightgray;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+}
+
+li {
+  list-style: none;
+}
+
+li:hover {
+  cursor: pointer;
+}
+input {
+  border: none;
+  outline: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+/* Main CSS */
+
+#app-wrapper {
+  margin-top: 1rem;
+  max-width: 1300px;
+  max-height: 840px;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+/* Left Side of App */
+#app-wrapper .app-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  max-height: 840px;
+  height: 100%;
+  background-color: var(--bg-light);
+  padding: 2rem 1rem 2rem 2rem;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+
+  min-width: 280px;
+  color: white;
+  overflow-y: auto;
+}
+/* Search Bar */
+#app-wrapper .app-left .search {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: white;
+  border-radius: 14px;
+  -webkit-box-shadow: 0px 0px 14px -10px #000000;
+  box-shadow: 0px 0px 14px -10px #000000;
+  position: relative;
+}
+
+#app-wrapper .app-left .search i {
+  padding-right: 1rem;
+  color: #333;
+}
+
+#app-wrapper .app-left .search form {
+  width: 100%;
+}
+
+#app-wrapper .app-left .search form input {
+  width: 100%;
+}
+
+/* Current Weather Display */
+#app-wrapper .app-left .current-weather {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgb(228, 228, 228);
+}
+#app-wrapper .app-left .current-weather i {
+  color: gold;
+  font-size: 11rem;
+  margin-bottom: 1rem;
+}
+#app-wrapper .app-left .current-weather h1 {
+  font-size: 4.5rem;
+  display: flex;
+}
+
+#app-wrapper .app-left .current-weather h1 span {
+  font-size: 2.5rem;
+  margin-top: 10px;
+}
+
+#app-wrapper .app-left .current-weather h4 {
+  margin-top: 8px;
+}
+
+#app-wrapper .app-left .current-weather h4 span {
+  opacity: 0.4;
+}
+
+/* Current Weather Info */
+#app-wrapper .app-left .current-info {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+}
+#app-wrapper .app-left .current-info div {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  margin-bottom: 1rem;
+}
+/* Current City */
+#app-wrapper .app-left .current-city {
+  width: 90%;
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 1rem 10px;
+  border-radius: 12px;
+}
+#app-wrapper .app-left .current-city i {
+  padding-right: 1rem;
+}
+
+/* //////////////// */
+/* Right Side App */
+
+#app-wrapper .app-right {
+  background-color: #f1f1f1;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 2rem 2rem 1rem 2rem;
+  max-width: 1280px;
+  overflow: auto;
+}
+
+#app-wrapper .app-right .app-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#app-wrapper .app-right .app-header ul {
+  display: flex;
+}
+
+#app-wrapper .app-right .app-header ul li:last-child {
+  margin-left: 1.4rem;
+}
+
+#app-wrapper .app-right .app-header .dates ul li {
+  opacity: 0.4;
+}
+
+/* Weather Data */
+#app-wrapper .app-right .weather-data {
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+
+  /* flex-wrap: wrap; */
+  white-space: nowrap;
+  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* WEATHER HIGHLIGHTS */
+#app-wrapper .app-right .weather-highlights .weather-highlights-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .big-card {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .wind-info
+  .wind-direction {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .wind-info
+  .wind-direction
+  i {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: slateblue;
+  transform: rotate(40deg);
+  margin-right: 1rem;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .sun-info
+  div {
+  display: flex;
+  align-items: center;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .humidity-info
+  div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .humidity-info
+  .bar-meter {
+  top: 50%;
+}
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .air-info
+  div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .air-info
+  .bar-meter {
+  top: 20%;
+}
+/* Progress Bar Special Setttings */
+#container {
+  text-align: center;
+  margin: 20px auto;
+  width: 150px;
+  height: 100px;
+}
+
+#container .progressbar-text {
+  top: -20px !important;
+}
