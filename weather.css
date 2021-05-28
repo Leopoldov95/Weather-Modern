@@ -1,14 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
-
+.current-weather-icon {
+  transform: scale(1.4) !important;
+}
 .weather-icon {
-  transform: scale(0.8);
+  transform: scale(0.4);
 }
 
 .weather-icon {
   display: inline-block;
   position: relative;
-  width: 15rem;
-  height: 12rem;
 }
 .weather-icon > * {
   position: absolute;

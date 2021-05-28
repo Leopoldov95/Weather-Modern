@@ -1,12 +1,22 @@
 import { createAutoComplete } from "./autocomplete.mjs";
 import { config } from "./config.mjs";
 import createProgressBar from "./progressBar.mjs";
-import { generateAppLeft } from "./new_generate.mjs";
+import {
+  generateAppLeft,
+  generateForecast,
+  weatherHighlights,
+} from "./new_generate.mjs";
 
 // DOM SELECTION - content generate containers
 const appLeft = document.querySelector(".app-left-append");
 const weatherData = document.querySelector(".weather-data");
-const weatherInfo = document.querySelector(".weather-highlights");
+const weatherInfo = document.querySelector(".weather-highlights-container");
+
+// random city array
+const randomCities = [
+  [-118.242766, 34.0536909],
+  [41.8756, -87.6244],
+];
 
 // initializing the autocomplete function
 const autoCompleteConfig = {
@@ -86,7 +96,11 @@ const onCitySelect = async (city, appLeft, weatherData, weatherInfo) => {
   );
   forecastContainer.innerHTML = "";
   generateForecast(response.data); */
-  appLeft.innerHTML = generateAppLeft(response.data);
+  appLeft.innerHTML = await generateAppLeft(response.data);
+  document.querySelector(".weather-icon").classList.add("current-weather-icon");
+  weatherData.innerHTML = await generateForecast(response.data);
+  weatherInfo.innerHTML = await weatherHighlights(response.data);
+  createProgressBar(Math.floor(response.data.current.uvi + 1));
 };
 
-createProgressBar(8);
+// load random city on page load

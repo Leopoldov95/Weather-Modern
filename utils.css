@@ -85,11 +85,12 @@
   padding: 1rem;
   opacity: 0.97;
   width: 100%;
+  z-index: 10;
 }
 
 .dropdown-menu {
   color: #333;
-  line-height: 2;
+  line-height: 2.5;
 }
 
 .dropdown-menu .dropdown-content {

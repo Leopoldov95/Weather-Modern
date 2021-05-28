@@ -163,4 +163,46 @@ const weatherIcons = {
   },
 };
 
-export { weatherIcons };
+const getWeatherIcon = (data) => {
+  const weather = data[0].icon;
+  switch (weather) {
+    case "01d":
+      return weatherIcons.dayClear();
+    case "01n":
+      return weatherIcons.nightClear();
+    case "02d":
+      return weatherIcons.dayCloudy();
+    case "01n":
+      return weatherIcons.nightCloudy();
+    case "03d":
+      return weatherIcons.dayScatteredClouds();
+    case "03n":
+      return weatherIcons.nightScatteredClouds();
+    case "04d":
+      return weatherIcons.dayBrokenClouds();
+    case "04n":
+      return weatherIcons.nightBrokenClouds();
+    case "09d":
+      return weatherIcons.dayRain();
+    case "09n":
+      return weatherIcons.nightRain();
+    case "10d":
+      return weatherIcons.dayRain();
+    case "10n":
+      return weatherIcons.nightRain();
+    case "11d":
+      return weatherIcons.dayThunder();
+    case "11n":
+      return weatherIcons.nightThunder();
+    case "13d":
+      return weatherIcons.sunSnow();
+    case "13n":
+      return weatherIcons.nightSnow();
+    case "50d":
+      return weatherIcons.mist();
+    case "50n":
+      return weatherIcons.mist();
+  }
+};
+
+export { getWeatherIcon };
