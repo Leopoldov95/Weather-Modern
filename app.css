@@ -1,5 +1,5 @@
 :root {
-  --bg-light: rgb(154, 140, 248);
+  --bg-light: rgb(252, 251, 255);
 }
 * {
   margin: 0;
@@ -100,6 +100,9 @@ a:hover {
 #app-wrapper .app-left .current-weather {
   padding: 2rem 0;
   border-bottom: 1px solid rgb(228, 228, 228);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #app-wrapper .app-left .current-weather i {
   color: gold;

@@ -97,7 +97,9 @@ const onCitySelect = async (city, appLeft, weatherData, weatherInfo) => {
   forecastContainer.innerHTML = "";
   generateForecast(response.data); */
   appLeft.innerHTML = await generateAppLeft(response.data);
-  document.querySelector(".weather-icon").classList.add("current-weather-icon");
+  await document
+    .querySelector(".weather-icon")
+    .classList.add("current-weather-icon");
   weatherData.innerHTML = await generateForecast(response.data);
   weatherInfo.innerHTML = await weatherHighlights(response.data);
   createProgressBar(Math.floor(response.data.current.uvi + 1));

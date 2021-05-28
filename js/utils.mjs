@@ -1,5 +1,5 @@
 //debouncing, helps us from making too many API requests
-const debounce = (func, delay = 300) => {
+const debounce = (func, delay = 200) => {
   let timeoutId;
   //the wrapper function
   return (...args) => {

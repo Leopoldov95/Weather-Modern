@@ -172,7 +172,7 @@ const getWeatherIcon = (data) => {
       return weatherIcons.nightClear();
     case "02d":
       return weatherIcons.dayCloudy();
-    case "01n":
+    case "02n":
       return weatherIcons.nightCloudy();
     case "03d":
       return weatherIcons.dayScatteredClouds();

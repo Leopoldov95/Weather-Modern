@@ -29,7 +29,9 @@ const generateAppLeft = async (data) => {
 
 const generateForecast = async (data) => {
   const forecast = [];
-  for (let item of await data.daily) {
+  const week = await data.daily.slice(0, data.daily.length - 1);
+
+  for (let item of week) {
     const { dt, temp, weather } = item;
     const highTemp = Math.round(temp.max);
     const lowTemp = Math.round(temp.min);
@@ -61,6 +63,8 @@ const weatherHighlights = async (data) => {
 
   const { humidity, sunrise, sunset, uvi, visibility, wind_deg, wind_speed } =
     await data.current;
+  const readSunrise = new Date(sunrise * 1000);
+  const readSunset = new Date(sunset * 1000);
 
   return `
   <div class="big-card uv-info">
@@ -86,7 +90,7 @@ const weatherHighlights = async (data) => {
                 <div>
                   <i class="sun-icon fas fa-arrow-up"></i>
                 </div>
-                <div>${sunrise.toLocaleString("en-US", {
+                <div>${readSunrise.toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
@@ -96,7 +100,7 @@ const weatherHighlights = async (data) => {
                 <div>
                   <i class="sun-icon fas fa-arrow-down"></i>
                 </div>
-                <div>${sunset.toLocaleString("en-US", {
+                <div>${readSunset.toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
