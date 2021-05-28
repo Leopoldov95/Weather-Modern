@@ -1,5 +1,5 @@
 :root {
-  --bg-light: rgb(182, 182, 255);
+  --bg-light: rgb(154, 140, 248);
 }
 * {
   margin: 0;
@@ -68,7 +68,7 @@ a:hover {
   border-top-left-radius: 15px;
 
   min-width: 280px;
-  color: white;
+
   overflow-y: auto;
 }
 /* Search Bar */

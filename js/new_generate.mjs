@@ -1,12 +1,14 @@
+import { weatherIcons } from "./weather.mjs";
+
 const generateAppLeft = (data) => {
   const { temp, weather, humidity } = data.current;
   const formattedTemp = Math.round(temp);
-  const icon = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+  const icon = `http://openweathermap.org/img/wn/${weather[0].icon}@4x.png`;
   const currentDate = new Date();
   return `
     <div class="current-weather">
           <div>
-            <img src="${icon}" alt="main_weather" />
+            ${weatherIcons.dayThunder()}
           </div>
           <div>
             <h1>${formattedTemp}<span>&#8451;</span></h1>
@@ -14,7 +16,9 @@ const generateAppLeft = (data) => {
           </div>
         </div>
         <div class="current-info">
-          <div><img src="${icon}" alt="weather_desc"/> <span>${weather[0].description}</span></div>
+          <div><i class="fas fa-cloud"></i> <span>${
+            weather[0].description
+          }</span></div>
           <div><i class="fas fa-tint"></i> <span>Humidity - ${humidity}%</span></div>
         </div>
         <div class="current-city">
@@ -24,3 +28,4 @@ const generateAppLeft = (data) => {
 };
 
 export { generateAppLeft };
+// <img src="${icon}" alt="main_weather" />
