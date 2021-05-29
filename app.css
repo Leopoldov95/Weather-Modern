@@ -301,10 +301,7 @@ a:hover {
 }
 
 /* MAP */
-.leaflet-control-attribution,
-.leaflet-control {
-  display: none !important;
-}
+
 #mapid {
-  height: 8rem;
+  height: 10rem;
 }

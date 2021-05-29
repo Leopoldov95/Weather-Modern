@@ -6,16 +6,33 @@ import {
   generateForecast,
   weatherHighlights,
 } from "./new_generate.mjs";
-
+import createMap from "./map.mjs";
 // DOM SELECTION - content generate containers
 const appLeft = document.querySelector(".app-left-append");
 const weatherData = document.querySelector(".weather-data");
 const weatherInfo = document.querySelector(".weather-highlights-container");
+const hourly = document.querySelector("#hourly");
+const weekly = document.querySelector("#weekly");
 
 // random city array
 const randomCities = [
-  [-118.242766, 34.0536909],
-  [41.8756, -87.6244],
+  // may need to change format
+  [21.0294498, 105.8544441],
+  [51.5073219, -0.1276474],
+  [34.0536909, -118.242766],
+  [-87.6244, 41.8756],
+  [47.6038321, -122.3300624],
+  [40.7127281, -74.0060152],
+  [13.7544238, 100.4930399],
+  [-34.6075682, -58.4370894],
+  [43.6534817, -79.3839347],
+  [55.7504461, 37.6174943],
+  [48.8566969, 2.3514616],
+  [52.5170365, 13.3888599],
+  [27.708317, 85.3205817],
+  [28.6138954, 77.2090057],
+  [-33.8548157, 151.2164539],
+  [30.0443879, 31.2357257],
 ];
 
 // initializing the autocomplete function
@@ -61,15 +78,19 @@ createAutoComplete({
   ...autoCompleteConfig,
   root: document.querySelector("#autocomplete"),
   onOptionSelect(city) {
+    // console.log(city.properties);
+    const { lat, lon } = city.properties;
+
+    // const { lon } = city.properties;
+
     //document.querySelector(".tutorial").classList.add("is-hidden");
-    onCitySelect(city, appLeft, weatherData, weatherInfo);
-    //onCitySelect(city, currentCity);
+    onCitySelect(lat, lon, appLeft, weatherData, weatherInfo);
   },
 });
 /* */
 
 //grabbing the data from the weather api
-const onCitySelect = async (city, appLeft, weatherData, weatherInfo) => {
+const onCitySelect = async (lat, lon, appLeft, weatherData, weatherInfo) => {
   /*  let currentCity = `${
     city.properties.city
   }, ${city.properties.country_code.toUpperCase()}`; */
@@ -77,50 +98,37 @@ const onCitySelect = async (city, appLeft, weatherData, weatherInfo) => {
     "https://api.openweathermap.org/data/2.5/onecall?",
     {
       params: {
-        lat: city.properties.lat,
-        lon: city.properties.lon,
+        lat: lat,
+        lon: lon,
         appid: config.WEATHER_KEY,
         units: "metric",
       },
     }
   );
-  console.log(response);
   /* //setting default temp to celcius when searching to prevent error, not the nicest fix though...
   document.getElementById("unit").checked = false;
   document.querySelector("#unit-name").innerHTML = "Celcius";
-  //appending the HTML generator to the HTML
-  currentWeatherElement.innerHTML = generateCurrentData(response.data);
-  currentCityElement.innerHTML = generateCurrentCity(
-    currentCity,
-    response.data
-  );
-  forecastContainer.innerHTML = "";
-  generateForecast(response.data); */
+ */
+  console.log(response.data);
   appLeft.innerHTML = await generateAppLeft(response.data);
+  // change main weather icon
   await document
     .querySelector(".weather-icon")
     .classList.add("current-weather-icon");
+  // handle map generator here
+  await createMap(response.data.lat, response.data.lon);
   weatherData.innerHTML = await generateForecast(response.data);
   weatherInfo.innerHTML = await weatherHighlights(response.data);
   createProgressBar(Math.floor(response.data.current.uvi + 1));
 };
 
 // load random city on page load
+function loadOnStartup(arr) {
+  const rand = Math.round(Math.random() * arr.length);
+  const lat = arr[rand][0];
+  const lon = arr[rand][1];
 
-// initiliazie map
-var mymap = L.map("mapid").setView([51.505, -0.09], 11);
-L.marker([51.505, -0.09]).addTo(mymap);
-L.tileLayer(
-  "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-  {
-    attribution:
-      'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
+  onCitySelect(lat, lon, appLeft, weatherData, weatherInfo);
+}
 
-    id: "mapbox/streets-v11",
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken:
-      "pk.eyJ1IjoibGVvdjk1IiwiYSI6ImNrcDluaG41bjBpamwydm56MmE5am00cGYifQ.3RHmdQSpubg12QicMl-uqw",
-  }
-).addTo(mymap);
+loadOnStartup(randomCities);

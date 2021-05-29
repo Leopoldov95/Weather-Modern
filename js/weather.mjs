@@ -205,4 +205,24 @@ const getWeatherIcon = (data) => {
   }
 };
 
-export { getWeatherIcon };
+const visibilityIcon = (data) => {
+  if (data < 4) {
+    return "Poor ☹️";
+  } else if (data < 7) {
+    return "Normal 😐";
+  } else {
+    return "Good 😀";
+  }
+};
+
+const humidityIcon = (data) => {
+  if (data < 34) {
+    return "Feels Good 👍";
+  } else if (data < 67) {
+    return "Normal 🤙";
+  } else {
+    return "Hot & Sticky 👎";
+  }
+};
+
+export { getWeatherIcon, visibilityIcon, humidityIcon };

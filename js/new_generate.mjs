@@ -1,10 +1,14 @@
-import { getWeatherIcon } from "./weather.mjs";
+import { getWeatherIcon, humidityIcon, visibilityIcon } from "./weather.mjs";
 import createProgressBar from "./progressBar.mjs";
 
 // rain atttribute?
+
 const generateAppLeft = async (data) => {
   const { temp, weather, clouds } = await data.current;
   const formattedTemp = Math.round(temp);
+  document.querySelector(
+    ".app-left"
+  ).style.background = `url('./img/${weather[0].icon}.jpg') no-repeat center center/cover`;
   const icon = await getWeatherIcon(weather);
 
   return `
@@ -22,7 +26,7 @@ const generateAppLeft = async (data) => {
         <div><i class="fas fa-cloud"></i> <span>Cloud Cover - ${clouds}%</span></div>
         </div>
         <div class="current-city">
-          <h3><i class="fas fa-map-marker-alt"></i>New York, NY, USA</h3>
+        <div id="mapid"></div>
         </div>
     `;
 };
@@ -50,6 +54,38 @@ const generateForecast = async (data) => {
       ${icon}
     </div>
     <h3>${highTemp}&#176;<span class="font-light">${lowTemp}&#176;</span></h3>
+    </div>
+    `);
+  }
+  const markup = forecast.join("");
+
+  return markup;
+};
+const generateHourly = async (data) => {
+  const forecast = [];
+  const week = await data.daily.slice(0, data.daily.length - 1);
+
+  for (let item of week) {
+    const { dt, temp, weather } = item;
+
+    // const icon = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+    const icon = await getWeatherIcon(weather);
+
+    const getTime = new Date(dt * 1000);
+
+    const time = getTime.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    forecast.push(`
+    <div class="card">
+    <h3>${time}</h3>
+    <div>
+      ${icon}
+    </div>
+    <h3>${Math.round(temp)}&#176;;</span></h3>
     </div>
     `);
   }
@@ -115,12 +151,12 @@ const weatherHighlights = async (data) => {
                   <span class="bar-meter"></span>
                 </div>
               </div>
-              <span>Normal 🤙</span>
+              <span>${humidityIcon(humidity)}</span>
             </div>
             <div class="big-card visibility-info">
               <h3>Visibility</h3>
               <h1>${visibility / 1000}<span>km</span></h1>
-              <span>Average 😐</span>
+              <span>${visibilityIcon(visibility / 1000)}</span>
             </div>
             <div class="big-card air-info">
               <h3>Air Quality</h3>

@@ -1,0 +1,9 @@
+1 - make map dynamic - DONE
+2 - remove map banner - DONE
+3 - change background based on weather 
+4 - add local time clock instead of air quality
+5 - fix sunrise and sunset time
+6 - load random city on page load - DONE
+7 - make C and F button work
+8 - allow for switching between hourly and daily forecast
+9 - change appleft font color based on background
