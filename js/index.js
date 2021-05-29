@@ -4,16 +4,17 @@ import createProgressBar from "./progressBar.mjs";
 import {
   generateAppLeft,
   generateForecast,
+  generateHourly,
   weatherHighlights,
 } from "./new_generate.mjs";
 import createMap from "./map.mjs";
 // DOM SELECTION - content generate containers
 const appLeft = document.querySelector(".app-left-append");
-const weatherData = document.querySelector(".weather-data");
+const weatherData = document.querySelector("#display-daily");
+const weatherDataHourly = document.querySelector("#display-current");
 const weatherInfo = document.querySelector(".weather-highlights-container");
-const hourly = document.querySelector("#hourly");
-const weekly = document.querySelector("#weekly");
 
+//console.log(weatherDataHourly.innerHTML);
 // random city array
 const randomCities = [
   // may need to change format
@@ -84,13 +85,27 @@ createAutoComplete({
     // const { lon } = city.properties;
 
     //document.querySelector(".tutorial").classList.add("is-hidden");
-    onCitySelect(lat, lon, appLeft, weatherData, weatherInfo);
+    onCitySelect(
+      lat,
+      lon,
+      appLeft,
+      weatherData,
+      weatherInfo,
+      weatherDataHourly
+    );
   },
 });
 /* */
 
 //grabbing the data from the weather api
-const onCitySelect = async (lat, lon, appLeft, weatherData, weatherInfo) => {
+const onCitySelect = async (
+  lat,
+  lon,
+  appLeft,
+  weatherData,
+  weatherInfo,
+  weatherDataHourly
+) => {
   /*  let currentCity = `${
     city.properties.city
   }, ${city.properties.country_code.toUpperCase()}`; */
@@ -118,6 +133,7 @@ const onCitySelect = async (lat, lon, appLeft, weatherData, weatherInfo) => {
   // handle map generator here
   await createMap(response.data.lat, response.data.lon);
   weatherData.innerHTML = await generateForecast(response.data);
+  weatherDataHourly.innerHTML = await generateHourly(response.data);
   weatherInfo.innerHTML = await weatherHighlights(response.data);
   createProgressBar(Math.floor(response.data.current.uvi + 1));
 };
@@ -128,7 +144,7 @@ function loadOnStartup(arr) {
   const lat = arr[rand][0];
   const lon = arr[rand][1];
 
-  onCitySelect(lat, lon, appLeft, weatherData, weatherInfo);
+  onCitySelect(lat, lon, appLeft, weatherData, weatherInfo, weatherDataHourly);
 }
 
 loadOnStartup(randomCities);

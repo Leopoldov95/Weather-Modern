@@ -7,3 +7,6 @@
 7 - make C and F button work
 8 - allow for switching between hourly and daily forecast
 9 - change appleft font color based on background
+
+** To get the local time of the sleected place, must add timezone offset!
+-- for some reason JS is basing time off of my local time GMT, must set to default!!

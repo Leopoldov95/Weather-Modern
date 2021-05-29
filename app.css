@@ -183,13 +183,24 @@ a:hover {
   width: 100%;
   margin: 2rem 0;
   display: flex;
+}
 
+#app-wrapper .app-right .weather-data #display-daily,
+#app-wrapper .app-right .weather-data #display-current {
+  display: flex;
   /* flex-wrap: wrap; */
   white-space: nowrap;
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+}
+#app-wrapper .app-right .weather-data #display-current {
+  display: none;
+}
+#app-wrapper .app-right .weather-data #display-daily .w16,
+#app-wrapper .app-right .weather-data #display-current .w16 {
+  height: 4rem !important;
 }
 
 /* WEATHER HIGHLIGHTS */
@@ -304,4 +315,5 @@ a:hover {
 
 #mapid {
   height: 10rem;
+  border-radius: 10px;
 }

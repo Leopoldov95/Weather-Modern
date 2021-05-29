@@ -62,16 +62,18 @@ const generateForecast = async (data) => {
   return markup;
 };
 const generateHourly = async (data) => {
-  const forecast = [];
-  const week = await data.daily.slice(0, data.daily.length - 1);
+  const hourly = [];
+  const offset = data.timezone_offset;
 
-  for (let item of week) {
+  const hour = await data.hourly.slice(0, 12);
+  console.log(hour);
+  for (let item of hour) {
     const { dt, temp, weather } = item;
 
     // const icon = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
     const icon = await getWeatherIcon(weather);
 
-    const getTime = new Date(dt * 1000);
+    const getTime = new Date((dt + offset) * 1000);
 
     const time = getTime.toLocaleString("en-US", {
       hour: "numeric",
@@ -79,17 +81,17 @@ const generateHourly = async (data) => {
       hour12: true,
     });
 
-    forecast.push(`
+    hourly.push(`
     <div class="card">
     <h3>${time}</h3>
     <div>
       ${icon}
     </div>
-    <h3>${Math.round(temp)}&#176;;</span></h3>
+    <h3>${Math.round(temp)}&#176;</span></h3>
     </div>
     `);
   }
-  const markup = forecast.join("");
+  const markup = hourly.join("");
 
   return markup;
 };
@@ -171,5 +173,5 @@ const weatherHighlights = async (data) => {
   `;
 };
 
-export { generateAppLeft, generateForecast, weatherHighlights };
+export { generateAppLeft, generateForecast, generateHourly, weatherHighlights };
 // <img src="${icon}" alt="main_weather" />
