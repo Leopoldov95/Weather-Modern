@@ -18,8 +18,8 @@ const generateAppLeft = async (data) => {
           </div>
         </div>
         <div class="current-info">
-         <p>${weather[0].description}</p> 
-        <div><i class="fas fa-cloud"></i> <span>${clouds}%</span></div>
+         <h2>${weather[0].description}</h2> 
+        <div><i class="fas fa-cloud"></i> <span>Cloud Cover - ${clouds}%</span></div>
         </div>
         <div class="current-city">
           <h3><i class="fas fa-map-marker-alt"></i>New York, NY, USA</h3>

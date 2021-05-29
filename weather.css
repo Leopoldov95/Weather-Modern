@@ -1,13 +1,14 @@
 .current-weather-icon {
-  transform: scale(1.4) !important;
-  margin: 8rem 0 !important;
+  transform: scale(1.2) !important;
+  height: 11rem;
+  margin-bottom: 1rem !important;
 }
 .weather-icon {
   transform: scale(0.4);
 }
 
 .weather-icon {
-  display: inline-block;
+  display: block;
   position: relative;
 }
 .weather-icon > * {
@@ -40,6 +41,7 @@
   top: 1.5rem;
   border-radius: 50px;
   z-index: -1;
+  box-shadow: 2px 2px 12px rgb(0 0 0 / 20%);
 }
 .weather-icon .cloud.small-cloud {
   transform: translate(-70%, -30%) scale(0.5);

@@ -59,14 +59,14 @@ a:hover {
 #app-wrapper .app-left {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   max-height: 840px;
   height: 100%;
   background-color: var(--bg-light);
   padding: 2rem 1rem 2rem 2rem;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
-
+  /* background: url("./img/thunder.jpg") no-repeat center center/cover; */
   min-width: 280px;
 
   overflow-y: auto;
@@ -132,18 +132,17 @@ a:hover {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
+  line-height: 2;
 }
 #app-wrapper .app-left .current-info div {
-  display: grid;
-  grid-template-columns: 1fr 8fr;
   margin-bottom: 1rem;
+}
+#app-wrapper .app-left .current-info div i {
+  margin-right: 1rem;
 }
 /* Current City */
 #app-wrapper .app-left .current-city {
-  width: 90%;
-  background-color: #f1f1f1;
-  color: #333;
-  padding: 1rem 10px;
+  width: 100%;
   border-radius: 12px;
 }
 #app-wrapper .app-left .current-city i {
@@ -299,4 +298,13 @@ a:hover {
 
 #container .progressbar-text {
   top: -20px !important;
+}
+
+/* MAP */
+.leaflet-control-attribution,
+.leaflet-control {
+  display: none !important;
+}
+#mapid {
+  height: 8rem;
 }
