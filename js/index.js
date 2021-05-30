@@ -62,31 +62,26 @@ createAutoComplete({
   root: document.querySelector("#autocomplete"),
   onOptionSelect(selected) {
     // console.log(city.properties);
-    const { lat, lon } = selected.properties;
+    //const { lat, lon } = selected.properties;
+    // console.log(selected);
+    const res = selected;
     // const { city, state, country_code } = await selected.properties;
     // use this to generate lat and lon and display current location
     //const selectedCity = await selected.properties;
     /* const searchResults = selected.properties;
     console.log(searchResults); */
     // const { lon } = city.properties;
+    console.log(res);
 
     //document.querySelector(".tutorial").classList.add("is-hidden");
-    onCitySelect(
-      lat,
-      lon,
-      appLeft,
-      weatherData,
-      weatherInfo,
-      weatherDataHourly
-    );
+    onCitySelect(res, appLeft, weatherData, weatherInfo, weatherDataHourly);
   },
 });
 /* */
 
 //grabbing the data from the weather api
 const onCitySelect = async (
-  lat,
-  lon,
+  res,
   appLeft,
   weatherData,
   weatherInfo,
@@ -99,8 +94,8 @@ const onCitySelect = async (
     "https://api.openweathermap.org/data/2.5/onecall?",
     {
       params: {
-        lat: lat,
-        lon: lon,
+        lat: res.properties.lat,
+        lon: res.properties.lon,
         appid: config.WEATHER_KEY,
         units: "metric",
       },
@@ -111,7 +106,7 @@ const onCitySelect = async (
   document.querySelector("#unit-name").innerHTML = "Celcius";
  */
 
-  appLeft.innerHTML = await generateAppLeft(response.data);
+  appLeft.innerHTML = await generateAppLeft(response.data, res);
   // change main weather icon
   await document
     .querySelector(".weather-icon")
@@ -137,9 +132,15 @@ async function loadOnStartup(arr) {
   if (res.data.Error) {
     return [];
   }
-  console.log(res.data.features[0]);
+  // console.log(res.data.features[0]);
 
-  onCitySelect(lat, lon, appLeft, weatherData, weatherInfo, weatherDataHourly);
+  onCitySelect(
+    res.data.features[0],
+    appLeft,
+    weatherData,
+    weatherInfo,
+    weatherDataHourly
+  );
 }
 
 loadOnStartup(randomCities);

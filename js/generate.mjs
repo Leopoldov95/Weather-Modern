@@ -3,9 +3,9 @@ import createProgressBar from "./progressBar.mjs";
 
 // rain atttribute?
 
-const generateAppLeft = async (data) => {
+const generateAppLeft = async (data, res) => {
   const offset = await data.timezone_offset;
-
+  const { city, state, country_code } = await res.properties;
   const { dt, temp, weather, clouds } = await data.current;
   const formattedTemp = Math.round(temp);
   const getTime = new Date((dt + offset) * 1000);
@@ -26,6 +26,23 @@ const generateAppLeft = async (data) => {
     ".app-left"
   ).style.background = `url('./img/${weather[0].icon}.jpg') no-repeat center center/cover`;
   const icon = await getWeatherIcon(weather);
+  const lightText = [
+    "01n",
+    "02n",
+    "03n",
+    "04n",
+    "10n",
+    "09n",
+    "13n",
+    "13d",
+    "09d",
+    "10d",
+  ];
+  if (lightText.indexOf(weather[0].icon) !== -1) {
+    document.querySelector(".app-left").style.color = "white";
+  } else {
+    document.querySelector(".app-left").style.color = "black";
+  }
 
   return `
     <div class="current-weather">
@@ -33,11 +50,14 @@ const generateAppLeft = async (data) => {
             ${icon}
           </div>
           <div>
-            <h1>${formattedTemp}<span>&#8451;</span></h1>
+            <h1 class='temp-format' >${formattedTemp}<span>&#8451;</span></h1>
             <h4>${day}, <span>${time}</span></h4>
           </div>
         </div>
         <div class="current-info">
+        <h4><strong>${city}, ${
+    state === undefined ? "" : `${state},`
+  } ${country_code.toUpperCase()}</strong></h4>
          <h2>${weather[0].description}</h2> 
         <div><i class="fas fa-cloud"></i> <span>Cloud Cover - ${clouds}%</span></div>
         </div>
@@ -73,7 +93,7 @@ const generateForecast = async (data) => {
     <div>
       ${icon}
     </div>
-    <h3>${highTemp}&#176;<span class="font-light">${lowTemp}&#176;</span></h3>
+    <h3><span class='temp-format'>${highTemp}</span><span class="unit-format">&#176;</span><span class="font-light"><span class='temp-format'>${lowTemp}</span><span class="unit-format">&#176;</span></span></h3>
     </div>
     `);
   }
@@ -108,7 +128,9 @@ const generateHourly = async (data) => {
     <div>
       ${icon}
     </div>
-    <h3>${Math.round(temp)}&#176;</span></h3>
+    <h3><span class='temp-format'>${Math.round(
+      temp
+    )}</span><span class="unit-format">&#176;</span></span></h3>
     </div>
     `);
   }
@@ -138,7 +160,9 @@ const weatherHighlights = async (data) => {
               </div>
 
               <div>
-                <h1>${Math.round(wind_speed)}<span>km/h</span></h1>
+                <h1 class="wind_format">${Math.round(
+                  wind_speed
+                )}<span class="speed_format">km/h</span></h1>
               </div>
               <div class="wind-direction">
                 <i class="fas fa-map-marker-alt"></i>
@@ -182,26 +206,26 @@ const weatherHighlights = async (data) => {
             </div>
             <div class="big-card visibility-info">
               <h3>Visibility</h3>
-              <h1>${visibility / 1000}<span>km</span></h1>
+              <h1>${visibility / 1000}<span class='dist-format'>km</span></h1>
               <span>${visibilityIcon(visibility / 1000)}</span>
             </div>
             <div class="big-card air-info">
               <h3>Feels Like</h3>
               <div class="feels-like">
                 <div>
-               <span><i class="bg-morn fas fa-circle"></i> Morning - </span><span>${Math.round(
+               <span><i class="bg-morn fas fa-circle"></i> Morning - </span><span><span class='temp-format'>${Math.round(
                  morn
-               )}&#176;</span> 
+               )}</span><span class="unit-format">&#176;</span></span> 
                </div>
                <div>
-               <span><i class="bg-day fas fa-sun"></i> Day - </span><span>${Math.round(
+               <span><i class="bg-day fas fa-sun"></i> Day - </span><span><span class='temp-format'>${Math.round(
                  day
-               )}&#176;</span> 
+               )}</span><span class="unit-format">&#176;</span></span> 
                </div>
                <div>
-               <span><i class="bg-night fas fa-moon"></i> Night - </span><span>${Math.round(
+               <span><i class="bg-night fas fa-moon"></i> Night - </span><span><span class='temp-format'>${Math.round(
                  night
-               )}&#176;</span> 
+               )}</span><span class="unit-format">&#176;<span></span> 
                </div>
                 </div>
               </div>
