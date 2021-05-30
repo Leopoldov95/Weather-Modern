@@ -221,7 +221,7 @@ const humidityIcon = (data) => {
   } else if (data < 67) {
     return "Normal 🤙";
   } else {
-    return "Hot & Sticky 👎";
+    return "Hot & Sticky 😓";
   }
 };
 

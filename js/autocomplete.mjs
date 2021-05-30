@@ -12,7 +12,7 @@ const createAutoComplete = ({
   root.innerHTML = `
   <div class="search">
           <i class="fas fa-search"></i>
-          <form>
+          <form autocomplete="off">
             <input type="text" 
             id="place-search-input"
             placeholder="Search for places..." />

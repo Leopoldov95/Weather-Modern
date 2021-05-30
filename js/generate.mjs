@@ -5,6 +5,7 @@ import createProgressBar from "./progressBar.mjs";
 
 const generateAppLeft = async (data) => {
   const offset = await data.timezone_offset;
+
   const { dt, temp, weather, clouds } = await data.current;
   const formattedTemp = Math.round(temp);
   const getTime = new Date((dt + offset) * 1000);
@@ -85,7 +86,7 @@ const generateHourly = async (data) => {
   const offset = await data.timezone_offset;
 
   const hour = await data.hourly.slice(1, 13);
-  console.log(hour);
+
   for (let item of hour) {
     const { dt, temp, weather } = item;
 
@@ -118,6 +119,8 @@ const generateHourly = async (data) => {
 
 const weatherHighlights = async (data) => {
   // for testing, will handle in seperate file
+  const { morn, night, day } = await data.daily[0].temp;
+
   const offset = await data.timezone_offset;
   const { humidity, sunrise, sunset, visibility, wind_deg, wind_speed } =
     await data.current;
@@ -184,11 +187,22 @@ const weatherHighlights = async (data) => {
             </div>
             <div class="big-card air-info">
               <h3>Feels Like</h3>
-              <div>
+              <div class="feels-like">
                 <div>
-               <span><i class="fas fa-circle"></i> Morning - </span><span></span> 
-               <span><i class="fas fa-sun"></i> Morning - </span><span></span> 
-               <span><i class="fas fa-moon"></i> Morning - </span><span></span> 
+               <span><i class="bg-morn fas fa-circle"></i> Morning - </span><span>${Math.round(
+                 morn
+               )}&#176;</span> 
+               </div>
+               <div>
+               <span><i class="bg-day fas fa-sun"></i> Day - </span><span>${Math.round(
+                 day
+               )}&#176;</span> 
+               </div>
+               <div>
+               <span><i class="bg-night fas fa-moon"></i> Night - </span><span>${Math.round(
+                 night
+               )}&#176;</span> 
+               </div>
                 </div>
               </div>
             </div>

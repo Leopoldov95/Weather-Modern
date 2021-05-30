@@ -1,7 +1,7 @@
 export default function createProgressBar(val) {
   let UVVal = val;
   let barFill = (UVVal * 7.69) / 100;
-  console.log(barFill);
+
   let bar = new ProgressBar.SemiCircle(container, {
     strokeWidth: 12,
     color: "#FFEA82",

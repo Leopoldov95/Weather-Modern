@@ -1,4 +1,17 @@
 /* UTILITIES */
+
+/* BG COLOS */
+.bg-morn {
+  color: orange;
+}
+
+.bg-day {
+  color: gold;
+}
+
+.bg-night {
+  color: slateblue;
+}
 .font-light {
   opacity: 0.4;
 }

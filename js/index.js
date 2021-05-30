@@ -1,4 +1,5 @@
 import { createAutoComplete } from "./autocomplete.mjs";
+import { randomCities } from "./random.mjs";
 import { config } from "./config.mjs";
 import createProgressBar from "./progressBar.mjs";
 import {
@@ -6,7 +7,7 @@ import {
   generateForecast,
   generateHourly,
   weatherHighlights,
-} from "./new_generate.mjs";
+} from "./generate.mjs";
 import createMap from "./map.mjs";
 // DOM SELECTION - content generate containers
 const appLeft = document.querySelector(".app-left-append");
@@ -16,26 +17,6 @@ const weatherInfo = document.querySelector(".weather-highlights-container");
 
 //console.log(weatherDataHourly.innerHTML);
 // random city array
-
-const randomCities = [
-  // may need to change format
-  [21.0294498, 105.8544441],
-  [51.5073219, -0.1276474],
-  [34.0536909, -118.242766],
-  [-87.6244, 41.8756],
-  [47.6038321, -122.3300624],
-  [40.7127281, -74.0060152],
-  [13.7544238, 100.4930399],
-  [-34.6075682, -58.4370894],
-  [43.6534817, -79.3839347],
-  [55.7504461, 37.6174943],
-  [48.8566969, 2.3514616],
-  [52.5170365, 13.3888599],
-  [27.708317, 85.3205817],
-  [28.6138954, 77.2090057],
-  [-33.8548157, 151.2164539],
-  [30.0443879, 31.2357257],
-];
 
 // initializing the autocomplete function
 const autoCompleteConfig = {
@@ -79,10 +60,14 @@ const autoCompleteConfig = {
 createAutoComplete({
   ...autoCompleteConfig,
   root: document.querySelector("#autocomplete"),
-  onOptionSelect(city) {
+  onOptionSelect(selected) {
     // console.log(city.properties);
-    const { lat, lon } = city.properties;
-
+    const { lat, lon } = selected.properties;
+    // const { city, state, country_code } = await selected.properties;
+    // use this to generate lat and lon and display current location
+    //const selectedCity = await selected.properties;
+    /* const searchResults = selected.properties;
+    console.log(searchResults); */
     // const { lon } = city.properties;
 
     //document.querySelector(".tutorial").classList.add("is-hidden");
@@ -125,7 +110,7 @@ const onCitySelect = async (
   document.getElementById("unit").checked = false;
   document.querySelector("#unit-name").innerHTML = "Celcius";
  */
-  console.log(response.data);
+
   appLeft.innerHTML = await generateAppLeft(response.data);
   // change main weather icon
   await document
@@ -140,10 +125,19 @@ const onCitySelect = async (
 };
 
 // load random city on page load
-function loadOnStartup(arr) {
+async function loadOnStartup(arr) {
   const rand = Math.floor(Math.random() * arr.length);
   const lat = arr[rand][0];
   const lon = arr[rand][1];
+  // anoying but couldnt fina another solution to get name, state, and country
+  const res = await axios.get(
+    `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${config.MAP_KEY}`
+  );
+  //handling the 'no city found' error, show no content
+  if (res.data.Error) {
+    return [];
+  }
+  console.log(res.data.features[0]);
 
   onCitySelect(lat, lon, appLeft, weatherData, weatherInfo, weatherDataHourly);
 }

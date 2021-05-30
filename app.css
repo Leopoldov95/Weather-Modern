@@ -285,12 +285,32 @@ a:hover {
   .weather-highlights
   .weather-highlights-container
   .air-info
+  .feels-like {
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+}
+
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .air-info
+  .feels-like
   div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
-
+#app-wrapper
+  .app-right
+  .weather-highlights
+  .weather-highlights-container
+  .air-info
+  .feels-like
+  div
+  i {
+  margin-right: 10px;
+}
 #app-wrapper
   .app-right
   .weather-highlights
