@@ -198,10 +198,10 @@ a:hover {
 #app-wrapper .app-right .weather-data #display-current {
   display: none;
 }
-#app-wrapper .app-right .weather-data #display-daily .w16,
+/* #app-wrapper .app-right .weather-data #display-daily .w16,
 #app-wrapper .app-right .weather-data #display-current .w16 {
   height: 4rem !important;
-}
+} */
 
 /* WEATHER HIGHLIGHTS */
 #app-wrapper .app-right .weather-highlights .weather-highlights-container {
@@ -316,4 +316,10 @@ a:hover {
 #mapid {
   height: 10rem;
   border-radius: 10px;
+}
+
+/* Overwrite weather icon */
+.weather-icon .moon {
+  width: 5rem;
+  height: 5rem;
 }

@@ -16,6 +16,7 @@ const weatherInfo = document.querySelector(".weather-highlights-container");
 
 //console.log(weatherDataHourly.innerHTML);
 // random city array
+
 const randomCities = [
   // may need to change format
   [21.0294498, 105.8544441],
@@ -140,7 +141,7 @@ const onCitySelect = async (
 
 // load random city on page load
 function loadOnStartup(arr) {
-  const rand = Math.round(Math.random() * arr.length);
+  const rand = Math.floor(Math.random() * arr.length);
   const lat = arr[rand][0];
   const lon = arr[rand][1];
 

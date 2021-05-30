@@ -4,8 +4,23 @@ import createProgressBar from "./progressBar.mjs";
 // rain atttribute?
 
 const generateAppLeft = async (data) => {
-  const { temp, weather, clouds } = await data.current;
+  const offset = await data.timezone_offset;
+  const { dt, temp, weather, clouds } = await data.current;
   const formattedTemp = Math.round(temp);
+  const getTime = new Date((dt + offset) * 1000);
+  const day = getTime
+    .toLocaleDateString("en-us", {
+      timeZone: "UTC",
+      weekday: "long",
+    })
+    .slice(0, 3);
+  const time = getTime.toLocaleString("en-US", {
+    timeZone: "UTC",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  //const time
   document.querySelector(
     ".app-left"
   ).style.background = `url('./img/${weather[0].icon}.jpg') no-repeat center center/cover`;
@@ -18,7 +33,7 @@ const generateAppLeft = async (data) => {
           </div>
           <div>
             <h1>${formattedTemp}<span>&#8451;</span></h1>
-            <h4>Monday, <span>16:00</span></h4>
+            <h4>${day}, <span>${time}</span></h4>
           </div>
         </div>
         <div class="current-info">
@@ -33,7 +48,8 @@ const generateAppLeft = async (data) => {
 
 const generateForecast = async (data) => {
   const forecast = [];
-  const week = await data.daily.slice(0, data.daily.length - 1);
+  const offset = await data.timezone_offset;
+  const week = await data.daily.slice(1, data.daily.length);
 
   for (let item of week) {
     const { dt, temp, weather } = item;
@@ -42,9 +58,12 @@ const generateForecast = async (data) => {
     // const icon = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
     const icon = await getWeatherIcon(weather);
 
-    const getTime = new Date(dt * 1000);
+    const getTime = new Date((dt + offset) * 1000);
     const day = getTime
-      .toLocaleDateString("en-us", { weekday: "long" })
+      .toLocaleDateString("en-us", {
+        timeZone: "UTC",
+        weekday: "long",
+      })
       .slice(0, 3);
 
     forecast.push(`
@@ -63,9 +82,9 @@ const generateForecast = async (data) => {
 };
 const generateHourly = async (data) => {
   const hourly = [];
-  const offset = data.timezone_offset;
+  const offset = await data.timezone_offset;
 
-  const hour = await data.hourly.slice(0, 12);
+  const hour = await data.hourly.slice(1, 13);
   console.log(hour);
   for (let item of hour) {
     const { dt, temp, weather } = item;
@@ -76,6 +95,7 @@ const generateHourly = async (data) => {
     const getTime = new Date((dt + offset) * 1000);
 
     const time = getTime.toLocaleString("en-US", {
+      timeZone: "UTC",
       hour: "numeric",
       minute: "numeric",
       hour12: true,
@@ -98,11 +118,11 @@ const generateHourly = async (data) => {
 
 const weatherHighlights = async (data) => {
   // for testing, will handle in seperate file
-
-  const { humidity, sunrise, sunset, uvi, visibility, wind_deg, wind_speed } =
+  const offset = await data.timezone_offset;
+  const { humidity, sunrise, sunset, visibility, wind_deg, wind_speed } =
     await data.current;
-  const readSunrise = new Date(sunrise * 1000);
-  const readSunset = new Date(sunset * 1000);
+  const readSunrise = new Date((sunrise + offset) * 1000);
+  const readSunset = new Date((sunset + offset) * 1000);
 
   return `
   <div class="big-card uv-info">
@@ -129,6 +149,7 @@ const weatherHighlights = async (data) => {
                   <i class="sun-icon fas fa-arrow-up"></i>
                 </div>
                 <div>${readSunrise.toLocaleString("en-US", {
+                  timeZone: "UTC",
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
@@ -139,6 +160,7 @@ const weatherHighlights = async (data) => {
                   <i class="sun-icon fas fa-arrow-down"></i>
                 </div>
                 <div>${readSunset.toLocaleString("en-US", {
+                  timeZone: "UTC",
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
@@ -161,15 +183,17 @@ const weatherHighlights = async (data) => {
               <span>${visibilityIcon(visibility / 1000)}</span>
             </div>
             <div class="big-card air-info">
-              <h3>Air Quality</h3>
-              <div >
-                <h1>105</h1>
-                <div class="vertical-bar">
-                  <span class="bar-meter"></span>
+              <h3>Feels Like</h3>
+              <div>
+                <div>
+               <span><i class="fas fa-circle"></i> Morning - </span><span></span> 
+               <span><i class="fas fa-sun"></i> Morning - </span><span></span> 
+               <span><i class="fas fa-moon"></i> Morning - </span><span></span> 
                 </div>
               </div>
-              <span>Unhealthy 👎</span>
             </div>
+             
+          </div>
   `;
 };
 
