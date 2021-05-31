@@ -51,7 +51,7 @@ const autoCompleteConfig = {
     if (response.data.Error) {
       return [];
     }
-
+    console.log(response);
     return response.data.features;
   },
 };
@@ -78,6 +78,15 @@ createAutoComplete({
   },
 });
 /* */
+// change this unit based upon btn select
+
+function checkUnit() {
+  if (document.querySelector("#c-btn").classList.contains("selected")) {
+    return "metric";
+  } else {
+    return "imperial";
+  }
+}
 
 //grabbing the data from the weather api
 const onCitySelect = async (
@@ -97,7 +106,7 @@ const onCitySelect = async (
         lat: res.properties.lat,
         lon: res.properties.lon,
         appid: config.WEATHER_KEY,
-        units: "metric",
+        units: checkUnit(),
       },
     }
   );
@@ -105,7 +114,7 @@ const onCitySelect = async (
   document.getElementById("unit").checked = false;
   document.querySelector("#unit-name").innerHTML = "Celcius";
  */
-
+  console.log(response.data);
   appLeft.innerHTML = await generateAppLeft(response.data, res);
   // change main weather icon
   await document

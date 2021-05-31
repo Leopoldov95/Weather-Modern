@@ -50,7 +50,11 @@ const generateAppLeft = async (data, res) => {
             ${icon}
           </div>
           <div>
-            <h1 class='temp-format' >${formattedTemp}<span>&#8451;</span></h1>
+            <h1><span class='temp-format' >${formattedTemp}</span><span class='unit-symbol'>${
+    document.querySelector("#c-btn").classList.contains("selected")
+      ? "&#8451"
+      : "&#8457"
+  };</span></h1>
             <h4>${day}, <span>${time}</span></h4>
           </div>
         </div>
