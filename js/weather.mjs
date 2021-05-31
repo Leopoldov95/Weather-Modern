@@ -225,4 +225,40 @@ const humidityIcon = (data) => {
   }
 };
 
-export { getWeatherIcon, visibilityIcon, humidityIcon };
+const getWindDir = (data) => {
+  if (data >= 350 || data <= 10) {
+    return `NORTH`;
+  } else if (data <= 30) {
+    return `NNE`;
+  } else if (data <= 50) {
+    return `NE`;
+  } else if (data <= 70) {
+    return "ENE";
+  } else if (data <= 100) {
+    return "EAST";
+  } else if (data <= 120) {
+    return "ESE";
+  } else if (data <= 140) {
+    return "SE";
+  } else if (data <= 160) {
+    return "SSE";
+  } else if (data <= 190) {
+    return "SOUTH";
+  } else if (data <= 210) {
+    return "SSW";
+  } else if (data <= 230) {
+    return "SW";
+  } else if (data <= 250) {
+    return "WSW";
+  } else if (data <= 280) {
+    return "WEST";
+  } else if (data < 300) {
+    return "WNW";
+  } else if (data < 320) {
+    return "NW";
+  } else {
+    return "NNW";
+  }
+};
+
+export { getWeatherIcon, visibilityIcon, humidityIcon, getWindDir };

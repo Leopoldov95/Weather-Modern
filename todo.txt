@@ -10,3 +10,7 @@
 
 dark text -01d,02d,03d, 04d,11d,11n,50d,50n
 light text - 01n,02n,03n,04n,10n,09n,13n,13d,09d,10d
+
+for bar meter (using bottom absolute) - 75% === 100% HUMIDITY, 5% === 0% HUMIDITY 
+==> humidity * .70 + 5
+for wind direction, 180deg === north/up

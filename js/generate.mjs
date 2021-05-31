@@ -1,5 +1,9 @@
-import { getWeatherIcon, humidityIcon, visibilityIcon } from "./weather.mjs";
-import createProgressBar from "./progressBar.mjs";
+import {
+  getWeatherIcon,
+  humidityIcon,
+  visibilityIcon,
+  getWindDir,
+} from "./weather.mjs";
 
 // rain atttribute?
 
@@ -169,8 +173,8 @@ const weatherHighlights = async (data) => {
                 )}<span class="speed_format">km/h</span></h1>
               </div>
               <div class="wind-direction">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>WSW</h3>
+                <i style="transform:rotate(${wind_deg}deg) scaleY(-1) ;" class="fas fa-map-marker-alt"></i>
+                <h3>${getWindDir(wind_deg)}</h3>
               </div>
             </div>
             <div class="big-card sun-info">
@@ -203,7 +207,9 @@ const weatherHighlights = async (data) => {
               <div>
                 <h1>${humidity}<span>%</span></h1>
                 <div class="vertical-bar">
-                  <span class="bar-meter"></span>
+                  <span class="bar-meter" style="bottom:${Math.round(
+                    humidity * 0.7 + 5
+                  )}%;"></span>
                 </div>
               </div>
               <span>${humidityIcon(humidity)}</span>

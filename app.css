@@ -249,7 +249,6 @@ a:hover {
   justify-content: center;
   align-items: center;
   color: slateblue;
-  transform: rotate(40deg);
   margin-right: 1rem;
 }
 
@@ -280,7 +279,7 @@ a:hover {
   .weather-highlights-container
   .humidity-info
   .bar-meter {
-  top: 50%;
+  bottom: 50%;
 }
 #app-wrapper
   .app-right
