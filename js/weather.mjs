@@ -140,7 +140,6 @@ const weatherIcons = {
       <div class="weather-icon w10">
   <div class="moon small-moon"></div>
   <div class="cloud"></div>
-  <div class="cloud forefront"></div>
 </div>
       `;
   },
@@ -149,7 +148,6 @@ const weatherIcons = {
       <div class="weather-icon w10">
   <div class="sun small-sun"></div>
   <div class="cloud"></div>
-  <div class="cloud forefront"></div>
 </div>
       `;
   },
@@ -157,7 +155,6 @@ const weatherIcons = {
     return `
       <div class="weather-icon w10">
   <div class="cloud"></div>
-  <div class="cloud forefront mist"></div>
 </div>
       `;
   },

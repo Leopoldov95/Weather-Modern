@@ -168,9 +168,19 @@ const weatherHighlights = async (data) => {
               </div>
 
               <div>
-                <h1 class="wind_format">${Math.round(
-                  wind_speed
-                )}<span class="speed_format">km/h</span></h1>
+                <h1 class="wind_format">
+                ${
+                  document
+                    .querySelector("#c-btn")
+                    .classList.contains("selected")
+                    ? `<span class='wind_format_num'>${Math.round(
+                        wind_speed
+                      )}</span>km/h`
+                    : `<span class='wind_format_num'>${
+                        Math.round(wind_speed) / 1.6
+                      }</span>mp/h`
+                }
+               </h1>
               </div>
               <div class="wind-direction">
                 <i style="transform:rotate(${wind_deg}deg) scaleY(-1) ;" class="fas fa-map-marker-alt"></i>
@@ -216,14 +226,23 @@ const weatherHighlights = async (data) => {
             </div>
             <div class="big-card visibility-info">
               <h3>Visibility</h3>
-              <h1>${visibility / 1000}<span class='dist-format'>km</span></h1>
+              <h1 class="format-visibility">${
+                document.querySelector("#c-btn").classList.contains("selected")
+                  ? `<span class="format-visibility-num">${
+                      visibility / 1000
+                    }</span>km`
+                  : `<span class="format-visibility-num">${
+                      visibility / 1000 / 1.6
+                    }</span>Mi`
+              }</h1>
+            
               <span>${visibilityIcon(visibility / 1000)}</span>
             </div>
             <div class="big-card air-info">
               <h3>Feels Like</h3>
               <div class="feels-like">
                 <div>
-               <span><i class="bg-morn fas fa-circle"></i> Morning - </span><span><span class='temp-format'>${Math.round(
+               <span><i class="bg-morn fas fa-circle"></i> Morn - </span><span><span class='temp-format'>${Math.round(
                  morn
                )}</span><span class="unit-format">&#176;</span></span> 
                </div>

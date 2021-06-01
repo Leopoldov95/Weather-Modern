@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./weather.css">
     <link rel="stylesheet" href="./utils.css">
     <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="media.css">
     
     <title>Weather JS</title>
   </head>
@@ -37,19 +38,7 @@
           </form>
         </div> -->
         <div class="app-left-append">
-        <div class="current-weather">
-          <div>
-            <i class="fas fa-cloud-sun"></i>
-          </div>
-          <div>
-            <h1>12<span>&#8451;</span></h1>
-            <h4>Monday, <span>16:00</span></h4>
-          </div>
-        </div>
-        <div class="current-info">
-          <div><i class="fas fa-cloud"></i> <span>Mostly Cloudly</span></div>
-          <div><i class="fas fa-tint"></i> <span>Rain - 30%</span></div>
-        </div>
+        
         <div class="current-city">
           <!-- <h3><i class="fas fa-map-marker-alt"></i>New York, NY, USA</h3> -->
           <div id="mapid"></div>
@@ -73,169 +62,18 @@
         </div>
         <div class="weather-data">
           <div id="display-daily">
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-cloud"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
+            
+            
           </div>
           <div id="display-current">
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
-            <div class="card">
-              <h3>Sun</h3>
-              <div>
-                <i class="fas fa-sun"></i>
-              </div>
-              <h3>15&#176;<span class="font-light">-5&#176;</span></h3>
-            </div>
+
           </div>
          
         </div>
         <div class="weather-highlights">
           <h2>Todays's Highlights</h2>
           <div class="weather-highlights-container">
-            <div class="big-card uv-info">
-              <div><h3>UV Index</h3></div>
-              <div id="container"></div>
-            </div>
-            <div class="big-card wind-info">
-              <div>
-                <h3>Wind Status</h3>
-              </div>
-
-              <div>
-                <h1>7.70<span>km/h</span></h1>
-              </div>
-              <div class="wind-direction">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>WSW</h3>
-              </div>
-            </div>
-            <div class="big-card sun-info">
-              <h3>Sunrise & Sunset</h3>
-              <div>
-                <div>
-                  <i class="sun-icon fas fa-arrow-up"></i>
-                </div>
-                <div>6:35AM</div>
-              </div>
-              <div>
-                <div>
-                  <i class="sun-icon fas fa-arrow-down"></i>
-                </div>
-                <div>7:35PM</div>
-              </div>
-            </div>
-            <div class="big-card humidity-info">
-              <h3>Sunrise & Sunset</h3>
-              <div>
-                <h1>12<span>%</span></h1>
-                <div class="vertical-bar">
-                  <span class="bar-meter"></span>
-                </div>
-              </div>
-              <span>Normal 🤙</span>
-            </div>
-            <div class="big-card visibility-info">
-              <h3>Visibility</h3>
-              <h1>5.2<span>km</span></h1>
-              <span>Average 😐</span>
-            </div>
-            <div class="big-card air-info">
-              <h3>Air Quality</h3>
-              <div >
-                <h1>105</h1>
-                <div class="vertical-bar">
-                  <span class="bar-meter"></span>
-                </div>
-              </div>
-              <span>Unhealthy 👎</span>
-            </div>
+            
             </div>
           </div>
         </div>
@@ -248,6 +86,7 @@
     <script src="./js/progress.js"></script>
     <script type="module" src="./js/index.js"></script>
     <script src="./js/toggle.js"></script>
-    
+    <script src="./js/resize.js"></script>
+   
   </body>
 </html>

@@ -15,9 +15,6 @@ const weatherData = document.querySelector("#display-daily");
 const weatherDataHourly = document.querySelector("#display-current");
 const weatherInfo = document.querySelector(".weather-highlights-container");
 
-//console.log(weatherDataHourly.innerHTML);
-// random city array
-
 // initializing the autocomplete function
 const autoCompleteConfig = {
   renderOption(city) {
@@ -51,7 +48,6 @@ const autoCompleteConfig = {
     if (response.data.Error) {
       return [];
     }
-    console.log(response);
     return response.data.features;
   },
 };
@@ -61,18 +57,7 @@ createAutoComplete({
   ...autoCompleteConfig,
   root: document.querySelector("#autocomplete"),
   onOptionSelect(selected) {
-    // console.log(city.properties);
-    //const { lat, lon } = selected.properties;
-    // console.log(selected);
     const res = selected;
-    // const { city, state, country_code } = await selected.properties;
-    // use this to generate lat and lon and display current location
-    //const selectedCity = await selected.properties;
-    /* const searchResults = selected.properties;
-    console.log(searchResults); */
-    // const { lon } = city.properties;
-    console.log(res);
-
     //document.querySelector(".tutorial").classList.add("is-hidden");
     onCitySelect(res, appLeft, weatherData, weatherInfo, weatherDataHourly);
   },
@@ -96,9 +81,6 @@ const onCitySelect = async (
   weatherInfo,
   weatherDataHourly
 ) => {
-  /*  let currentCity = `${
-    city.properties.city
-  }, ${city.properties.country_code.toUpperCase()}`; */
   const response = await axios.get(
     "https://api.openweathermap.org/data/2.5/onecall?",
     {
@@ -110,11 +92,6 @@ const onCitySelect = async (
       },
     }
   );
-  /* //setting default temp to celcius when searching to prevent error, not the nicest fix though...
-  document.getElementById("unit").checked = false;
-  document.querySelector("#unit-name").innerHTML = "Celcius";
- */
-  console.log(response.data);
   appLeft.innerHTML = await generateAppLeft(response.data, res);
   // change main weather icon
   await document
@@ -126,6 +103,13 @@ const onCitySelect = async (
   weatherDataHourly.innerHTML = await generateHourly(response.data);
   weatherInfo.innerHTML = await weatherHighlights(response.data);
   createProgressBar(Math.floor(response.data.current.uvi + 1));
+  if (window.innerWidth <= 560) {
+    console.log("screen width is less than 560px");
+    const newHeight = document.querySelector("#app-wrapper").scrollHeight;
+    console.log(newHeight);
+    document.querySelector(".current-city").style.top = `${newHeight}px`;
+    //document.querySelector(".current-city").style.top = `"${newHeight}px;"`;
+  }
 };
 
 // load random city on page load
@@ -141,7 +125,6 @@ async function loadOnStartup(arr) {
   if (res.data.Error) {
     return [];
   }
-  // console.log(res.data.features[0]);
 
   onCitySelect(
     res.data.features[0],

@@ -36,6 +36,15 @@ celciusBtn.addEventListener("click", () => {
     //convertToCelcius
     convertToCelcius(document.querySelectorAll(".temp-format"));
     document.querySelector(".unit-symbol").innerHTML = "&#8451";
+    const newFormat = `<span class="format-visibility-num">
+      ${
+        Number(document.querySelector(".format-visibility-num").innerHTML) * 1.6
+      }</span>Km`;
+    document.querySelector(".format-visibility").innerHTML = newFormat;
+    const newWindNum = `<span class='wind_format_num'>${
+      Number(document.querySelector(".wind_format_num").innerHTML) * 1.6
+    }</span>km/h`;
+    document.querySelector(".wind_format").innerHTML = newWindNum;
   }
 });
 farenheightBtn.addEventListener("click", () => {
@@ -47,6 +56,14 @@ farenheightBtn.addEventListener("click", () => {
     // convertTofarenheight
     convertTofarenheight(document.querySelectorAll(".temp-format"));
     document.querySelector(".unit-symbol").innerHTML = "&#8457";
+    const newFormat = `<span class="format-visibility-num">${
+      Number(document.querySelector(".format-visibility-num").innerHTML) / 1.6
+    }</span>Mi`;
+    document.querySelector(".format-visibility").innerHTML = newFormat;
+    const newWindNum = `<span class='wind_format_num'>${
+      Number(document.querySelector(".wind_format_num").innerHTML) / 1.6
+    }</span>mp/h`;
+    document.querySelector(".wind_format").innerHTML = newWindNum;
   }
 });
 
