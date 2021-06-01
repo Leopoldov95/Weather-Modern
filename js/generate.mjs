@@ -43,6 +43,8 @@ const generateAppLeft = async (data, res) => {
     "13d",
     "09d",
     "10d",
+    "50n",
+    "50d",
   ];
   if (lightText.indexOf(weather[0].icon) !== -1) {
     document.querySelector(".app-left").style.color = "white";
