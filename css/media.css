@@ -25,8 +25,13 @@
     padding: 0;
   }
 
-  #app-wrapper .app-left .current-weather div:nth-child(2) {
-    margin-left: 5rem;
+  #app-wrapper
+    .app-left
+    .current-weather
+    #current-weather-icon
+    .current-weather-icon
+    .cloud {
+    transform: translate(-50%, -50%) scale(0.9);
   }
 
   #app-wrapper .app-left .current-info {

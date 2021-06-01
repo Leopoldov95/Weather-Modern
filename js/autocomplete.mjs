@@ -25,15 +25,6 @@ const createAutoComplete = ({
     </div>
   </div>  
 `;
-
-  /* </div>
-  <div class="search-outer">
-
-      <i class="fas fa-search"></i><input
-              id="place-search-input"
-              type="text"
-              placeholder="Search location"
-      />  */
   //DOM inputs here, since { root } is destrucutered, we can refer to it down here for DOM inputs
   const input = root.querySelector("input");
   const dropdown = root.querySelector(".dropdown");

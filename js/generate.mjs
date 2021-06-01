@@ -34,6 +34,8 @@ const generateAppLeft = async (data, res) => {
     "01n",
     "02n",
     "03n",
+    "03d",
+    "04d",
     "04n",
     "10n",
     "09n",

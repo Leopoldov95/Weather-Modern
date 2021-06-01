@@ -136,3 +136,11 @@ async function loadOnStartup(arr) {
 }
 
 loadOnStartup(randomCities);
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 560) {
+    const newHeight = document.querySelector("#app-wrapper").scrollHeight;
+    console.log(newHeight);
+    document.querySelector(".current-city").style.top = `${newHeight}px`;
+  }
+});
