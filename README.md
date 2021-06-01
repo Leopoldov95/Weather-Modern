@@ -11,6 +11,9 @@
 ## General Info
 This is a fully functioning & responsive weather application that was created using javaScript, HTML, and CSS. This weather app includes a map plugin, a table that displays various weather data, customized weather icons, daily and forecast data, and the ability to switch between metric and imperial units. This application was a total rehall of my older weather app (which can be viewed here: https://weather-app-leopoldov95.netlify.app/) and my goal was to greatly improve upon the UI for the application and to add extra features. Also I was motivated to use the newer concepts I have been learning to make this application much nicer.
 
+## Screenshot
+[screenshot](./screenshot.png?raw=true)
+
 ## Usage
 Simply click on the demo link provided or download & run index.html
 
