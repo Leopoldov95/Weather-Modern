@@ -71,6 +71,12 @@ a:hover {
 
   overflow-y: auto;
 }
+
+#app-wrapper .app-left .app-loader {
+  font-size: 5rem;
+  text-align: center;
+  animation: spin 2s linear infinite;
+}
 /* Search Bar */
 #app-wrapper .app-left .search {
   display: flex;
@@ -343,4 +349,13 @@ a:hover {
 .weather-icon .moon {
   width: 5rem;
   height: 5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

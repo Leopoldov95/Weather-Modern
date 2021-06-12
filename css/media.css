@@ -17,6 +17,7 @@
     overflow-y: visible;
     border-radius: 0;
     padding: 1rem 1rem 0 1rem;
+    max-height: 356px;
   }
 
   #app-wrapper .app-left .current-weather {
@@ -24,14 +25,16 @@
     justify-content: space-around;
     padding: 0;
   }
-
+  #app-wrapper .app-left .app-loader {
+    font-size: 4rem;
+  }
   #app-wrapper
     .app-left
     .current-weather
     #current-weather-icon
     .current-weather-icon
     .cloud {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.8);
   }
 
   #app-wrapper .app-left .current-info {

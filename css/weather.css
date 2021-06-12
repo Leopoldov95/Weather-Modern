@@ -1,7 +1,8 @@
 .current-weather-icon {
   transform: scale(1.2) !important;
+  margin-bottom: 2rem !important;
+  padding-bottom: 3rem;
   height: 9rem;
-  margin-bottom: 1rem !important;
 }
 .weather-icon {
   transform: scale(0.4);

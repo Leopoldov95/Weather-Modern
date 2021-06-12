@@ -62,7 +62,13 @@ createAutoComplete({
     onCitySelect(res, appLeft, weatherData, weatherInfo, weatherDataHourly);
   },
 });
-/* */
+
+function hideLoader() {
+  if (document.querySelector(".app-loader")) {
+    document.querySelector(".app-loader").style.display = "none";
+  }
+}
+
 // change this unit based upon btn select
 
 function checkUnit() {
@@ -110,6 +116,7 @@ const onCitySelect = async (
     document.querySelector(".current-city").style.top = `${newHeight}px`;
     //document.querySelector(".current-city").style.top = `"${newHeight}px;"`;
   }
+  hideLoader();
 };
 
 // load random city on page load
