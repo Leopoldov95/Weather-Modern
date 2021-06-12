@@ -17,7 +17,7 @@
     overflow-y: visible;
     border-radius: 0;
     padding: 1rem 1rem 0 1rem;
-    max-height: 356px;
+    max-height: 420px;
   }
 
   #app-wrapper .app-left .current-weather {
@@ -67,6 +67,11 @@
   }
   .big-card {
     min-width: 150px;
+  }
+
+  .wind-info .wind_format,
+  .format-visibility {
+    font-size: 1.5rem;
   }
 
   .card {
