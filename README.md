@@ -1,4 +1,4 @@
-# Modern Weather App
+# Modern Weather App ⛅
 ## Table of Contents
 * [General Info](#general-info)
 * [Usage](#usage)
@@ -34,6 +34,6 @@ The app was created with the following technologies
 * Axios
 
 ## What I Learned
-This was a totall rehall from my older weather app that I have created. When I created the first version, I wasn't too happy about the results but I lacked the skills to make it look nicer. Now that I have learned more about front end technologies, I decided to go back and make the application much better. I learned that I should be more comfortable tackling on challenges even if they may appear to be very difficult (examples included adding the map, having my own weather icons, and making a dynamic SVG meter), at the end of the day, pushing myself is what will allow me to learn more. 
+This was a totall rehall from my older weather app that I have created. When I created the first version, I wasn't too happy about the results, but I lacked the skills to make it look nicer. Now that I have learned more about front end technologies, I decided to go back and make the application much better. I learned that I should be more comfortable tackling on challenges even if they may appear to be very difficult (examples included adding the map, having my own weather icons, and making a dynamic SVG meter), at the end of the day, pushing myself is what will allow me to learn more. 
 
-In this version of the app I used ES6 import/export features to make my javaScript files cleaner and I had a better usage of async/await.
+In this version of the app I used ES6 import/export features to make my javaScript files cleaner and I had a better usage of async/await when making http requests.
