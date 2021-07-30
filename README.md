@@ -1,4 +1,6 @@
 # Modern Weather App ⛅
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/80594fff-a850-4cde-951c-2da11e2db9b0/deploy-status)](https://app.netlify.com/sites/modernweatherapp/deploys)
 ## Table of Contents
 * [General Info](#general-info)
 * [Usage](#usage)
